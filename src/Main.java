@@ -15,7 +15,7 @@ public class Main {
     private static int HeapType;
 
     private static void processFunction(String command) {
-        //
+        System.out.println("Running command: " + command);
         if (command.equals("MakeHeap")) {
             // create a new heap and insert into the list based on the heap type originally selected
             switch (HeapType) {
@@ -54,11 +54,11 @@ public class Main {
             }
 
         }
-        else if (command.equals("Print")) {
+        else if (command.startsWith("Print")) {
             // print a heap
             int numberOfArguments = command.split(" ").length;
             assert lists.peekLast() != null;
-            Heap heap = (numberOfArguments == 1) ? lists.peekLast() : lists.get(Integer.parseInt(command.split(" ")[1]));
+            Heap heap = (numberOfArguments == 1) ? lists.peekLast() : lists.get(Integer.parseInt(command.split(" ")[1]) - 1);
             System.out.println(heap.toString());
         }
         else {

@@ -66,6 +66,7 @@ public class MergeableHeapSorted extends Heap {
         }
 
         united.tail.next = (currentL1 == null) ? new Node(currentL2) : new Node(currentL1);
+        united.tail = united.tail.next;
         united.head = united.head.next;
         return united;
     }
