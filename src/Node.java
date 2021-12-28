@@ -15,7 +15,9 @@ public class Node {
     public Node(Node source) {
         this.key = source.key;
         if (source.next != null) {
-            this.next = new Node(source.next);
+            Node next = new Node(source.next);
+            this.next = next;
+            next.previous = this;
         }
     }
 
