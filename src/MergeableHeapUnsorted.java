@@ -50,7 +50,12 @@ public class MergeableHeapUnsorted extends Heap {
 
     // O(n) bc findMin
     public void extractMin() {
-        min.previous.next = min.next;
+    	if ( this.min.previous == null )
+    		head = min.next;
+    	else if( this.min.next != null )
+    		this.min.previous.next = this.min.next;
+    	else
+    		this.min.previous.next = null;
         this.min = findMin();
     }
 
@@ -66,7 +71,7 @@ public class MergeableHeapUnsorted extends Heap {
 
         // find the tail of the united heap
         Node current = united.head;
-        while (current.next != null) {
+        while ( current.next != null) {
             current = current.next;
         }
         united.tail = current;
