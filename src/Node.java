@@ -1,3 +1,6 @@
+/**
+ *
+ */
 public class Node {
 
     public double key;
@@ -7,6 +10,15 @@ public class Node {
     public Node(double key) {
         this.key = key;
     }
+
+    // clone
+    public Node(Node source) {
+        this.key = source.key;
+        if (source.next != null) {
+            this.next = new Node(source.next);
+        }
+    }
+
 
     public void setChild(Node node) {
         this.next = node;
