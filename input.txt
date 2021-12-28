@@ -4,6 +4,8 @@ Insert 9
 Print
 MakeHeap
 Insert 3
+Insert 39
 Union 1 2
 Print
 ExtractMin
+Print

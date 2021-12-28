@@ -1,20 +1,26 @@
-import java.util.LinkedList;
-
 public class MergeableHeapUnsorted extends Heap {
 
     private Node head;
     private Node tail;
     private Node min;
 
-    // O(1)
+    /**
+     * class builder, create an empty list
+     * space complexity - O(1)
+     * time complexity - O(1)
+     */
     public MergeableHeapUnsorted() {
         this.head = null;
         this.min = new Node(Double.MAX_VALUE);
 
     }
 
-    // O(1)
+    /**
+     * inserts a new value into the heap to the end of it without sorting
+     * @param num (double) the number to insert
+     */
     public void insert(double num) {
+        // if the heap is empty start a new one
         if (head == null) {
             head = new Node(num);
             tail = head;
@@ -32,7 +38,12 @@ public class MergeableHeapUnsorted extends Heap {
         }
     }
 
-    // O(1)
+    /**
+     * assuming the heap isn't empty this function returns the smallest value in the heap without deleting it
+     * space complexity - O(1)
+     * time complexity - O(1)
+     * @return (double) the minimum value in the heap
+     */
     public double minimum() {
         return this.min.key;
     }
@@ -43,24 +54,34 @@ public class MergeableHeapUnsorted extends Heap {
         this.min = findMin();
     }
 
-    // O(1)
-    public MergeableHeapUnsorted union(Heap L1, Heap L2) {
+    // O(n)
+    public MergeableHeapUnsorted union(Heap L2) {
         MergeableHeapUnsorted united = new MergeableHeapUnsorted();
-        united.head = ((MergeableHeapUnsorted)L1).head;
-        united.tail = ((MergeableHeapUnsorted)L1).tail;
-        united.tail.next = ((MergeableHeapUnsorted)L2).head;
-        united.tail = ((MergeableHeapUnsorted)L2).tail;
-        united.min = (((MergeableHeapUnsorted)L1).min.key < ((MergeableHeapUnsorted)L2).min.key) ?
-                ((MergeableHeapUnsorted)L1).min : ((MergeableHeapUnsorted)L2).min;
+        MergeableHeapUnsorted l2Casted = ((MergeableHeapUnsorted)L2);
+
+        // connect L2 to this heap then create a copy and disconnect the two
+        this.tail.next = l2Casted.head;
+        united.head = new Node(this.head);
+        this.tail.next = null;
+
+        // find the tail of the united heap
+        Node current = united.head;
+        while (current.next != null) {
+            current = current.next;
+        }
+        united.tail = current;
+
+        // find the minimum
+        united.min = united.findMin();
         return united;
     }
 
     // O(n)
     public String toString() {
-        String str = "";
+        StringBuilder str = new StringBuilder();
         Node current = head;
         while(current != null) {
-            str += current.key + ", ";
+            str.append(current.key).append(", ");
             current = current.next;
         }
         return str.substring(0, str.length() - 2);

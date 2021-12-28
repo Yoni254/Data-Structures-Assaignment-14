@@ -44,13 +44,14 @@ public class MergeableHeapSorted extends Heap {
         head = head.next;
     }
 
-    public MergeableHeapSorted union(Heap L1, Heap L2) {
+    public MergeableHeapSorted union(Heap L2) {
         MergeableHeapSorted united = new MergeableHeapSorted();
         // some wierd merge sort like algorithm
-        Node currentL1 = ((MergeableHeapSorted)L1).head;
+        Node currentL1 = this.head;
         Node currentL2 = ((MergeableHeapSorted)L2).head;
         united.insert(Double.MAX_VALUE);
 
+        // start building from the end, every time insert the smallest value of the 2 pointers into the tail and advance further
         while (currentL1 != null && currentL2 != null) {
             if (currentL1.key < currentL2.key) {
                 united.tail.next = new Node(currentL1.key);
@@ -64,17 +65,16 @@ public class MergeableHeapSorted extends Heap {
             }
         }
 
-        united.tail.next = (currentL1 == null) ? currentL2 : currentL1;
-        united.tail = (currentL1 == null) ? ((MergeableHeapSorted)L2).tail : ((MergeableHeapSorted)L1).tail;
+        united.tail.next = (currentL1 == null) ? new Node(currentL2) : new Node(currentL1);
         united.head = united.head.next;
         return united;
     }
 
     public String toString() {
-        String str = "";
+        StringBuilder str = new StringBuilder();
         Node current = head;
         while(current != null) {
-            str += current.key + ", ";
+            str.append(current.key).append(", ");
             current = current.next;
         }
         return str.substring(0, str.length() - 2);
