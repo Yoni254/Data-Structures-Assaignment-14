@@ -52,7 +52,6 @@ public class Main {
                         "Please use the following syntax: Union x y" +
                         "for x, y the number of the heap you wish to merge (by order of creation)");
             }
-
         }
         else if (command.startsWith("Print")) {
             // print a heap

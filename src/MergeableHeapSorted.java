@@ -1,6 +1,5 @@
 public class MergeableHeapSorted extends Heap {
 
-    private Node head;
     private Node tail;
 
     public MergeableHeapSorted() {
@@ -24,7 +23,7 @@ public class MergeableHeapSorted extends Heap {
         }
 
         while(current.next != null) {
-            if (current.key < num && num < current.next.key) {
+            if (current.key <= num && num < current.next.key) {
                 Node temp = current.next;
                 current.next = new Node(num);
                 current.next.next = temp;
@@ -35,6 +34,7 @@ public class MergeableHeapSorted extends Heap {
         tail.next = new Node(num);
         tail = tail.next;
     }
+
 
     public double minimum() {
         return head.key;
@@ -70,15 +70,5 @@ public class MergeableHeapSorted extends Heap {
         united.tail = united.tail.next;
         united.head = united.head.next;
         return united;
-    }
-
-    public String toString() {
-        StringBuilder str = new StringBuilder();
-        Node current = head;
-        while(current != null) {
-            str.append(current.key).append(", ");
-            current = current.next;
-        }
-        return str.substring(0, str.length() - 2);
     }
 }

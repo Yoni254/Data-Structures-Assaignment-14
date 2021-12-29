@@ -1,8 +1,10 @@
+import java.util.LinkedList;
+
 public class MergeableHeapUnsorted extends Heap {
 
-    private Node head;
-    private Node tail;
-    private Node min;
+    protected Node tail;
+    protected Node min;
+    protected static LinkedList<Node> heads = new LinkedList<>();
 
     /**
      * class builder, create an empty list
@@ -24,11 +26,12 @@ public class MergeableHeapUnsorted extends Heap {
         if (head == null) {
             head = new Node(num);
             tail = head;
+            heads.add(head); 
         }
         else {
             Node newNode = new Node(num);
             newNode.previous = tail;
-            tail.setChild(newNode);
+            tail.next = newNode;
             tail = tail.next;
         }
 
@@ -81,17 +84,6 @@ public class MergeableHeapUnsorted extends Heap {
         // find the minimum
         united.min = united.findMin();
         return united;
-    }
-
-    // O(n)
-    public String toString() {
-        StringBuilder str = new StringBuilder();
-        Node current = head;
-        while(current != null) {
-            str.append(current.key).append(", ");
-            current = current.next;
-        }
-        return str.substring(0, str.length() - 2);
     }
 
     // O(n)

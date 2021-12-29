@@ -5,8 +5,20 @@
  * while this doesn't really function like a heap, we call it that because that's what they call it in the assignment
  */
 public abstract class Heap {
+    protected Node head;
     public abstract void insert(double num);
     public abstract double minimum();
     public abstract void extractMin();
     public abstract Heap union(Heap L2);
+
+    @Override
+    public String toString() {
+        StringBuilder str = new StringBuilder();
+        Node current = head;
+        while(current != null) {
+            str.append(current.key).append(", ");
+            current = current.next;
+        }
+        return str.substring(0, str.length() - 2);
+    }
 }

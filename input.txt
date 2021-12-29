@@ -6,28 +6,26 @@ Insert 2
 Insert 8
 Insert 5
 Insert 3
-Print
-ExtractMin
+Insert 3
+Insert 3
+Insert 5
+Insert 1
+Insert 7
 Print
 MakeHeap
-Insert -2
-Insert 17
-Insert 5
-Insert 4
-Insert 15
-Insert 14
-Insert -5
-Insert 7
 Insert 12
-Insert 87
-Insert 61
+Insert 1459
+Insert 12
+Insert 78
+Insert 123
+Insert 98
+Insert 152
+Insert 98
+Insert 5
+Insert 1
+Insert 7
 Print
 Union 1 2
-Print
-ExtractMin
-Print
-Insert 42
-Insert 1
 Print 1
 Print 2
 Print 3
