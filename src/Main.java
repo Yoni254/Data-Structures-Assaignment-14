@@ -8,6 +8,7 @@ import java.util.LinkedList;
  * Assignment mmn 14 - Data Structures and Introduction to Algorithms
  * @author Daniel Dubinskey - 209134543
  * @author Yonatan Tzukerman - 325999290
+ * @date 29/12/21
  */
 public class Main {
 
