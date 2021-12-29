@@ -4,17 +4,16 @@ import java.util.LinkedList;
  * Heap type c - unsorted and with different values this acts the same as an
  * unsorted heap but makes sure that any inputed number hasn't been used yet in
  * *any* of the heaps so far note that there are a few ways to interoperate this
- * question, we picked this one because that's what we understood of the term -
- * "׳–׳¨׳™׳�"
+ * question, we picked this one because that's what we understood of the term - "Foreign".
  */
 public class ForeignHeapUnsorted extends MergeableHeapUnsorted {
 	
 
 	/**
 	 * Insert a value into the heap. if the number has already been used in any
-	 * other heap then the function does nothing
-	 * space complexity - O(1), no extra variables
-	 * time complexity - O(m) when m is the total length of all heaps
+	 * other heap then the function does nothing.
+	 * Space complexity - O(1), no extra variables
+	 * Time complexity - O(m) when m is the total length of all heaps
 	 * @param num (double) value to insert into the heap
 	 */
 	public void insert(double num) {
@@ -28,6 +27,7 @@ public class ForeignHeapUnsorted extends MergeableHeapUnsorted {
 				Current = Current.next;
 			}
 		}
+		// continue inserting as normal
 		super.insert(num);
 	}
 }

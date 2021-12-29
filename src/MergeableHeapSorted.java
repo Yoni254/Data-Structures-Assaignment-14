@@ -1,3 +1,6 @@
+/**
+ * Heap type a - sorted by key value in ascending order
+ */
 public class MergeableHeapSorted extends Heap {
 
     private Node tail;

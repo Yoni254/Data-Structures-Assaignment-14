@@ -1,15 +1,20 @@
 import java.util.LinkedList;
 
+/**
+ * Heap type b - unsorted heap, numbers are kept by order of insertion
+ */
 public class MergeableHeapUnsorted extends Heap {
 
     protected Node tail;
     protected Node min;
+
+    // this is used for the foreign lists
     protected static LinkedList<Node> heads = new LinkedList<>();
 
     /**
-     * class builder, create an empty list
-     * space complexity - O(1)
-     * time complexity - O(1)
+     * Class constructor, create an empty list.
+     * Space complexity - O(1)
+     * Time complexity - O(1)
      */
     public MergeableHeapUnsorted() {
         this.head = null;
@@ -18,8 +23,8 @@ public class MergeableHeapUnsorted extends Heap {
     }
 
     /**
-     * inserts a new value into the heap to the end of it without sorting
-     * @param num (double) the number to insert
+     * Inserts a new value into the heap to the end of it without sorting.
+     * @param num (double) the number to insert.
      */
     public void insert(double num) {
         // if the heap is empty start a new one
@@ -27,8 +32,8 @@ public class MergeableHeapUnsorted extends Heap {
             head = new Node(num);
             tail = head;
             heads.add(head); 
-        }
-        else {
+        } else {
+            // else, insert the node at the end and set it to the tail
             Node newNode = new Node(num);
             newNode.previous = tail;
             tail.next = newNode;
@@ -42,23 +47,38 @@ public class MergeableHeapUnsorted extends Heap {
     }
 
     /**
-     * assuming the heap isn't empty this function returns the smallest value in the heap without deleting it
-     * space complexity - O(1)
-     * time complexity - O(1)
-     * @return (double) the minimum value in the heap
+     * Assuming the heap isn't empty this function returns the smallest value in the heap without deleting it.
+     * Space complexity - O(1)
+     * Time complexity - O(1)
+     * @return (double) the minimum value in the heap.
      */
     public double minimum() {
         return this.min.key;
     }
 
-    // O(n) bc findMin
+    /**
+     * Assuming the heap isn't empty, this function removes the smallest number from the heap without printing it.
+     * Because we already track the minimum value, we know it's location and therefor can directly access it.
+     * Time complexity - O(n) (finding the new minimum)
+     * Space complexity - O(1)
+     */
     public void extractMin() {
-    	if (this.min.previous == null)
-    		head = min.next;
-    	else if(this.min.next != null)
-    		this.min.previous.next = this.min.next;
-    	else
-    		this.min.previous.next = null;
+        if (min == null) return;
+
+        if (min.previous == null) {
+            // in case the minimum value is the head
+            min.next.previous = null;
+            head = min.next;
+        } else if (min.next == null) {
+            // in case the minimum value is the tail
+            min.previous.next = null;
+            tail = min.previous;
+        } else {
+            // in case the minimum value is in the middle
+            min.previous.next = min.next;
+            min.next.previous = min.previous;
+        }
+    	// find a new minimum value
         this.min = findMin();
     }
 
