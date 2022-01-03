@@ -50,8 +50,8 @@ public class Main {
             }
             catch (NullPointerException err) {
                 System.out.println("It appears the the Union command isn't using the right syntax." +
-                        "Please use the following syntax: Union x y" +
-                        "for x, y the number of the heap you wish to merge (by order of creation)");
+                        " Please use the following syntax: Union x y" +
+                        " for x, y the number of the heap you wish to merge (by order of creation)");
             }
         }
         else if (command.startsWith("Print")) {

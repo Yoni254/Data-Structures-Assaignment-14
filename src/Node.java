@@ -14,10 +14,13 @@ public class Node {
     // clone
     public Node(Node source) {
         this.key = source.key;
-        if (source.next != null) {
-            Node next = new Node(source.next);
-            this.next = next;
-            next.previous = this;
+        Node current = this;
+        Node sourceCurrent = source;
+        while (sourceCurrent.next != null) {
+            current.next = new Node(sourceCurrent.next.key);
+            current = current.next;
+            sourceCurrent = sourceCurrent.next;
+
         }
     }
 
