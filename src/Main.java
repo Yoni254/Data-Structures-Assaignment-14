@@ -138,7 +138,7 @@ public class Main {
             }
 
             // commands with options
-            if (command == 2) {
+            if (command == 2) { // insert
                 System.out.println("Please type the real number you wish to insert");
                 insertOption = scan.nextDouble();
             }
@@ -152,6 +152,7 @@ public class Main {
                 unionOption2 = scan.nextInt();
             }
 
+            // error handling
             if (command > 8 || command < 1) {
                 System.out.println("Invalid input, please try again");
                 continue;
