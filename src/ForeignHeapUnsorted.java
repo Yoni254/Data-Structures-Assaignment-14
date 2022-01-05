@@ -28,7 +28,6 @@ public class ForeignHeapUnsorted extends MergeableHeapUnsorted {
 	 */
 	public void insert(double num) {
 		// use a hashmap to check if the number has already been inserted
-
 		if (!numbers.containsKey(num)) {
 			numbers.put(num, true);
 			super.insert(num);
@@ -36,6 +35,7 @@ public class ForeignHeapUnsorted extends MergeableHeapUnsorted {
 	}
 
 	public void extractMin() {
+		// remove the number from the hashmap
 		numbers.remove(super.minimum());
 		super.extractMin();
 	}

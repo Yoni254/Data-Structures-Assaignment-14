@@ -42,9 +42,7 @@ public class MergeableHeapUnsorted extends Heap {
             tail = head;
         } else {
             // else, insert the node at the end and set it to the tail
-            Node newNode = new Node(num);
-            newNode.previous = tail;
-            tail.next = newNode;
+            tail.next = new Node(num);
             tail = tail.next;
         }
 
@@ -76,18 +74,23 @@ public class MergeableHeapUnsorted extends Heap {
     public void extractMin() {
         if (min == null) return;
 
-        if (min.previous == null) {
+        if (min == head) {
             // in case the minimum value is the head
-            min.next.previous = null;
             head = min.next;
-        } else if (min.next == null) {
-            // in case the minimum value is the tail
-            min.previous.next = null;
-            tail = min.previous;
+        } else if (min == tail) {
+            // in case the minimum value is the tail - O(n)
+            Node current = head;
+            while (current.next != null) {
+                current = current.next;
+            }
+            tail = current;
         } else {
-            // in case the minimum value is in the middle
-            min.previous.next = min.next;
-            min.next.previous = min.previous;
+            // in case the minimum value is in the middle - O(n)
+            Node current = head;
+            while (current.next != min) {
+                current = current.next;
+            }
+            current.next = min.next;
         }
     	// find a new minimum value, this is O(n)
         this.min = findMin();
@@ -115,10 +118,8 @@ public class MergeableHeapUnsorted extends Heap {
         // then separate back the tail and the head
         // total of O(n+m) due to the copy constructor
         this.tail.next = l2Casted.head;
-        l2Casted.head.previous = this.tail;
         united.head = new Node(this.head);
         this.tail.next = null;
-        l2Casted.head.previous = null;
 
         // find the tail of the united heap O(n+m)
         Node current = united.head;

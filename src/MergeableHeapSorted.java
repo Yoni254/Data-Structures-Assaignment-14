@@ -122,7 +122,6 @@ public class MergeableHeapSorted extends Heap {
         }
         // when one of the pointers reached the end of thr heap, insert what's left of the second one into the end
         united.tail.next = (currentL1 == null) ? new Node(currentL2) : new Node(currentL1);
-        united.tail.next.previous = united.tail; // this is not handled by the constructor
 
         // find the new tail of the united heap O(n+m)
         Node current = united.tail;
