@@ -8,7 +8,7 @@ import java.util.HashMap;
  *
  * Sum up of methods and their complexity (explained more in the pdf)
  * Constructor: time - O(1), space - O(1)
- * Insert: time - O(n), space - O(1)
+ * Insert: time - O(1), space - O(1)
  * Minimum: time - O(1), space - O(1)
  * ExtractMin: time - O(n), space - O(1)
  * Union: time - O(n), space - O(1)
