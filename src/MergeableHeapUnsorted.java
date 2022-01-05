@@ -15,8 +15,6 @@ public class MergeableHeapUnsorted extends Heap {
 
     protected Node tail;
     protected Node min;
-    // this is used for the foreign lists - space complexity of O(m) when m is the number of lists made by user
-    protected static LinkedList<Node> heads = new LinkedList<>();
 
 
     /**
@@ -42,7 +40,6 @@ public class MergeableHeapUnsorted extends Heap {
         if (head == null) {
             head = new Node(num);
             tail = head;
-            heads.add(head); 
         } else {
             // else, insert the node at the end and set it to the tail
             Node newNode = new Node(num);
@@ -104,6 +101,8 @@ public class MergeableHeapUnsorted extends Heap {
      *
      * Time complexity - O(n+m)
      * Space complexity - O(1), not counting the returned Heap
+     *
+     * note: the time complexity is O(n+m) to avoid aliasing. it can be a simple O(1) if that wasn't an issue
      * @param L2 the second heap to merge
      * @return a new merged heap
      */
@@ -136,11 +135,11 @@ public class MergeableHeapUnsorted extends Heap {
 
 
     /*
-      Private function to find the smallest value in the heap
-      used for Union and ExtractMin
-      Time complexity - O(n)
-      Space complexity - O(1)
-      @return the Node containing the minimum value
+     * Private function to find the smallest value in the heap
+     * used for Union and ExtractMin
+     * Time complexity - O(n)
+     * Space complexity - O(1)
+     * @return the Node containing the minimum value
      */
     private Node findMin() {
         Node currentMin = head;
